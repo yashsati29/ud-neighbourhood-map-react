@@ -3,9 +3,13 @@ import markerDefault from '../images/default-marker.png';
 import markerSelected from '../images/selected-marker.png';
 import foursquareLogo from '../images/foursquare.png';
 import { checkGetData } from '../App';
+
 class Filter extends Component {
+	// constructor init
 	constructor(props) {
 		super(props);
+
+		//Initial state
 		this.state = {
 			query: '',
 			map: {},
@@ -13,6 +17,8 @@ class Filter extends Component {
 			infowindow: {},
 			currentMarkers: []
 		}
+
+		// Binding the below functions to this
 		this.showFilter = this.showFilter.bind(this);
 		this.hideFilter = this.hideFilter.bind(this);
 		this.markerFilter = this.markerFilter.bind(this);
@@ -20,6 +26,8 @@ class Filter extends Component {
 	}
 	componentWillMount() {
 		setTimeout(() => {
+
+			// Updates the changes with props
 			this.setState({
 				map: this.props.map,
 				markers: this.props.markers,
@@ -28,11 +36,15 @@ class Filter extends Component {
 			});
 		}, 1000);
 	}
+
+	// Opens the filter when the button activates
 	showFilter() {
 		const filter = document.querySelector('.filter');
 		filter.classList.add('filter_open');
 		this.props.infowindow.close();
 	}
+
+	// Closes the filter when the button activates
 	hideFilter() {
 		const filter = document.querySelector('.filter');
 		filter.classList.remove('filter_open');
@@ -42,6 +54,8 @@ class Filter extends Component {
 		});
 		this.state.currentMarkers.forEach((marker) => marker.setVisible(true));
 	}
+
+	// Filters markers based on user query, only the markers that match the query are displayed
 	markerFilter(e) {
 		const filteredMarkers = [];
 		const markers = this.state.currentMarkers;
@@ -71,6 +85,8 @@ class Filter extends Component {
 			markers.forEach((marker) => marker.setVisible(true));
 		}
 	}
+
+	// Opens the infowindow when a list item is activated, checks and activates the animations
 	openInfoWindow = (e) => {
 		console.log(e);
 		this.state.markers.forEach((marker) => {
@@ -109,6 +125,8 @@ class Filter extends Component {
 			}
 		});
 	}
+
+	//renders the filter, header & markers
 	render() {
 		const { query, markers } = this.state;
 		const { showFilter, hideFilter, markerFilter, openInfoWindow } = this;
