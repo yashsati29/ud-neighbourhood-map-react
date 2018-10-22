@@ -39,7 +39,8 @@ class App extends Component {
 			fullscreenControl: false
 		});
 		const buildInfoWindow = new window.google.maps.InfoWindow({maxWidth: 320});
-		const bounds = new window.google.maps.LatLngBounds();    
+		const bounds = new window.google.maps.LatLngBounds();
+		const myEvents = 'click keypress'.split(' ');    
 		let buildMarkers = [];
 		let allLocations = [];
 		setTimeout(() => {
@@ -91,13 +92,15 @@ class App extends Component {
 
 				buildMarkers.push(marker);
 
-				marker.addListener('click', function() {
-					addInfoWindow(this, buildInfoWindow);
-					this.setAnimation(window.google.maps.Animation.BOUNCE);
-					setTimeout(function () {
-						marker.setAnimation(null);
-					}, 1000);
-				});
+				for (let i = 0; i < myEvents.length; i++) {
+					marker.addListener(myEvents[i], function() {
+						addInfoWindow(this, buildInfoWindow);
+						this.setAnimation(window.google.maps.Animation.BOUNCE);
+						setTimeout(function () {
+							marker.setAnimation(null);
+						}, 1000);
+					});
+				}
 
 				marker.addListener('mouseover', function() {
 					this.setIcon(markerSelected);
@@ -117,15 +120,14 @@ class App extends Component {
 				markers: buildMarkers,
 				infowindow: buildInfoWindow
 			});
-		}, 500);
+		}, 800);
 	}
 	getData() {
 		let places = [];
-		locations.map(location =>
+		locations.map((location) =>
 			fetch(`https://api.foursquare.com/v2/venues/${location.venueId}` +
 				`?client_id=${FS_CLIENT_ID}` +
-				`&client_secret=${FS_CLIENT_SECRET}` +
-				`&v=20180323`)
+				`&client_secret=${FS_CLIENT_SECRET}`)
 			.then(response => response.json())
 			.then(data => {
 				if (data.meta.code === 200) {
@@ -135,7 +137,7 @@ class App extends Component {
 				checkGetData = false;
 				console.log(error);
 			})
-			)
+			);
 		this.setState({
 			markers: places
 		});
@@ -144,7 +146,7 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="App">
+			<div className='App' role='main'>
 			<Filter
 			map={ this.state.map }
 			markers={ this.state.markers }

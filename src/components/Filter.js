@@ -73,7 +73,7 @@ class Filter extends Component {
 	}
 	openInfoWindow = (e) => {
 		console.log(e);
-		this.state.markers.map((marker) => {
+		this.state.markers.forEach((marker) => {
 			if (e.name === marker.name) {
 				if (checkGetData === true) {
 					this.state.infowindow.setContent(
@@ -114,30 +114,50 @@ class Filter extends Component {
 		const { showFilter, hideFilter, markerFilter, openInfoWindow } = this;
 		return (
 			<div className='wrap-filter'>
-			<div onClick={ showFilter } className='btnFilter btnFilter_open' role='button' title='Open filter'>Filter</div>
+			<div 
+			onClick={ showFilter }
+			className='btnFilter btnFilter_open'
+			role='button'
+			tabIndex="0"
+			title='Open filter'>
+			Filter
+			</div>
 			<h1 className='app-title'>Neighbourhood Map React</h1>
 			<div className='filter'>
 			<div className='filter-top'>
-			<div onClick={ hideFilter } className='btnFilter btnFilter_close' role='button' title='Close filter'>Out</div>
+			<div
+			onClick={ hideFilter }
+			onKeyPress={ hideFilter }
+			className='btnFilter btnFilter_close'
+			role='button'
+			tabIndex="0"
+			title='Close filter'>
+			Out
+			</div>
 			</div>
 			<input
+			onChange={ markerFilter }
+			className='filter-input'
 			type='text'
 			role='form'
 			aria-labelledby='filter'
+			tabIndex="0"
 			placeholder='Filter by name'
 			value={ query }
-			className='filter-input'
-			onChange={ markerFilter }
 			/>
 			<ul className='filter-list'>
 			{Object.keys(markers).map(i => (
 				<li className='filter-item' key={ i }>
 				<p 
 				onClick={ () => openInfoWindow(markers[i]) }
+				onKeyPress={ () => openInfoWindow(markers[i]) }
 				onMouseOver={ () => markers[i].setIcon(markerSelected) }
 				onMouseOut={ () => markers[i].setIcon(markerDefault) }
+				onFocus={ () => markers[i].setIcon(markerSelected) }
+				onBlur={ () => markers[i].setIcon(markerDefault) }
 				className='filter-item-action'
-				role='button'>
+				role='button'
+				tabIndex="0">
 				{ markers[i].name }
 				</p>
 				</li>
