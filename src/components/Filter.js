@@ -123,7 +123,7 @@ class Filter extends Component {
 			Filter
 			</div>
 			<h1 className='app-title'>Neighbourhood Map React</h1>
-			<div className='filter'>
+			<div id='filter' className='filter'>
 			<div className='filter-top'>
 			<div
 			onClick={ hideFilter }
