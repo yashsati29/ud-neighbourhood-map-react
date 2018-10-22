@@ -4,6 +4,7 @@ import scriptLoader from 'react-async-script-loader';
 import { MAP_API_KEY } from './data/auth';
 import { FS_CLIENT_ID } from './data/auth';
 import { FS_CLIENT_SECRET } from './data/auth';
+import { mapStyle } from './data/mapStyle';
 import { locations } from './data/locations';
 import markerDefault from './images/default-marker.png';
 import markerSelected from './images/selected-marker.png';
