@@ -10,6 +10,7 @@ import markerDefault from './images/default-marker.png';
 import markerSelected from './images/selected-marker.png';
 import foursquareLogo from './images/foursquare.png';
 import Map from './components/Map';
+import Filter from './components/Filter';
 
 let buildMap = {};
 export let checkGetData = '';
@@ -144,6 +145,11 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
+			<Filter
+			map={ this.state.map }
+			markers={ this.state.markers }
+			infowindow={ this.state.infowindow }
+			/>
 			<Map />
 			</div>
 			);
