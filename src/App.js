@@ -138,9 +138,7 @@ class App extends Component {
     getData() {
     	let places = [];
     	locations.map((location) =>
-    		fetch(`https://api.foursquare.com/v2/venues/${location.venueId}` +
-    			`?client_id=${FS_CLIENT_ID}` +
-    			`&client_secret=${FS_CLIENT_SECRET}`)
+    		fetch(`https://api.foursquare.com/v2/venues/${location.venueId}?client_id=${FS_CLIENT_ID}&client_secret=${FS_CLIENT_SECRET}&v=20181023`)
     		.then(response => response.json())
     		.then(data => {
     			if (data.meta.code === 200) {
