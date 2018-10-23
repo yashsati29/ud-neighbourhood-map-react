@@ -55,7 +55,6 @@ class App extends Component {
         setTimeout(() => {
         	if (this.state.markers.length === 9) {
         		allLocations = this.state.markers;
-        		console.log(allLocations);
 
             // Confirmation that Foursquare data has been received
             checkGetData = true;
