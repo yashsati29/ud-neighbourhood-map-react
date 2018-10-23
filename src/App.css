@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Courgette|Handlee);
+@import url(https://fonts.googleapis.com/css?family=Courgette|Quicksand);
 
 #map {
 	width: 100%;
@@ -11,14 +11,14 @@
 	display: inline-flex;
 	align-items: center;
 	color: white;
-	background-color: #ffca28;
+	background-color: #29ff42;
 }
 
 .app-title {
 	position: relative;
 	left: calc(50% - 215px);
 	color: #222;
-	font-family: "Handlee", cursive;
+	font-family: 'Quicksand', sans-serif;
 }
 
 .filter {
@@ -86,7 +86,7 @@
 }
 
 .filter-top {
-	background-color: #ef495b;
+	background-color: #9c08b9;
 }
 
 .filter-input {
